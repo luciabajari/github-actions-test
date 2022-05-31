@@ -24,7 +24,7 @@ jobs:
         shell: python # this should run on a python shell and not bash
   run-windows-commands:
     runs-on: windows-latest # default shell: powershell
-    needs: ["my-run-shell-cmd-job"]
+    needs: ["my-run-shell-cmd-job"] # depends on the actions that specified into the list 
     steps:
       - name: dir powershell
         run: Get-Location
