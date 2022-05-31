@@ -17,3 +17,8 @@ jobs:
         run: |
           npm -v
           node -v
+      - name: use python Command
+        run: |
+          import platform
+          print(platform.processor())
+        shell: python # this should run on a python shell and not bash
