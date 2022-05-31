@@ -1,0 +1,19 @@
+name: Commands
+
+
+on: 
+  push:
+    branches:
+      - "dev"
+
+
+jobs:
+  my-run-shell-cmd-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo "Hello"
+      - name: check versions
+        run: |
+          npm -v
+          node -v
