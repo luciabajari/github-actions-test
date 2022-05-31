@@ -1,6 +1,9 @@
 name: Actions
 
-on: [push]
+on: 
+  push:
+    branches:
+      - "dev"
 
 jobs:
   run-github-actions:
