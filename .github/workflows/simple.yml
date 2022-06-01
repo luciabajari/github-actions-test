@@ -1,0 +1,33 @@
+name: Commands
+
+
+on: 
+  pull_request:
+    branches:
+      - "dev"
+
+
+jobs:
+  my-run-shell-cmd-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        run: echo "Hello"
+      - name: check versions
+        run: |
+          npm -v
+          node -v
+      - name: use python Command
+        run: |
+          import platform
+          print(platform.processor())
+        shell: python # this should run on a python shell and not bash
+  run-windows-commands:
+    runs-on: windows-latest # default shell: powershell
+    needs: ["my-run-shell-cmd-job"] # depends on the actions that specified into the list 
+    steps:
+      - name: dir powershell
+        run: Get-Location
+      - name: dir bash
+        run: pwd
+        shell: bash

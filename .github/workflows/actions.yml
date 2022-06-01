@@ -1,0 +1,62 @@
+name: Actions
+
+# on:
+#   push:
+#     branches:
+#       - "dev"
+
+# on: [push, pull_request]
+
+# on:
+#   push:
+#   pull_request:
+#     types: [closed, assigned, opened, reopened]
+
+
+# send this JSON into request body. This equivalent to types in f.e.: pull_request : closed, assigned, etc.
+# {
+#     "event_type" : "build"
+# }
+
+
+on:
+  repository_dispatch:
+    types: [build]
+  # schedule:
+  #   - cron: "0/5 * * * *"
+  #   - cron: "0/6 * * * *"
+    # *minutes, *months, *day of a month, *month, *day of the week
+  # push: 
+      
+jobs:
+  run-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: payload
+        run: echo ${{github.event.client_payload}}
+      - name: List Files
+        run: |
+          pwd
+          ls
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
+          echo "${{github.token}}"
+        # git clone git@github:$GITHUB_REPOSITORY
+        # git checkout $GITHUB_SHA
+        # github.token: using github steps
+        # GITHUB_SHA: the commit id
+      - name: checkout
+        uses: actions/checkout@v1
+        # one of the most common action: will run git fetch, git checkout to the latest or triggered commit
+      - name: List Files After Checkout
+        run: |
+          pwd
+          ls
+      - name: Simple JS Action
+        id: greet
+        uses: actions/hello-world-javascript-action@v1 # reference to an action (from some other published repository)
+        with: # for providing inputs, actions also produces outputs
+          who-to-greet: Maya
+      - name: Log Greeting Time
+        run: echo "${{steps.greet.outputs.time}}" # refenrence step (for reference, give an id for the referenced one)
