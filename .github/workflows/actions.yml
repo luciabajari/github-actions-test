@@ -26,7 +26,7 @@ on:
   #   - cron: "0/5 * * * *"
   #   - cron: "0/6 * * * *"
     # *minutes, *months, *day of a month, *month, *day of the week
-  push: 
+  # push: 
       
 jobs:
   run-github-actions:
