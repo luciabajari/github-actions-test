@@ -12,10 +12,18 @@ name: Actions
 #   pull_request:
 #     types: [closed, assigned, opened, reopened]
 
+
+# send this JSON into request body. This equivalent to types in f.e.: pull_request : closed, assigned, etc.
+# {
+#     "event_type" : "build"
+# }
+
+
 on:
-  schedule:
-    - cron: "0/5 * * * *"
-    - cron: "0/6 * * * *"
+  repository_dispatch:
+  # schedule:
+  #   - cron: "0/5 * * * *"
+  #   - cron: "0/6 * * * *"
     # *minutes, *months, *day of a month, *month, *day of the week
   push: 
       
