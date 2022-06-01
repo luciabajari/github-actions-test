@@ -19,14 +19,32 @@ name: Actions
 # }
 
 
-on:
-  repository_dispatch:
-    types: [build]
+# on:
+#  # ONLY triggers on master branch!!!
+#   repository_dispatch:
+#     types: [build]
+
+
+# on:
   # schedule:
   #   - cron: "0/5 * * * *"
   #   - cron: "0/6 * * * *"
     # *minutes, *months, *day of a month, *month, *day of the week
   # push: 
+
+on:
+  push:
+    # branches-ignore:
+    #   - "main"
+    branches:
+      - "dev"
+      - "feature/*" # * not match for /, it has to be "only one word" (feature/apple - good, feature/apple/a - not)
+      - "feature/**"
+    tags:
+      - v1.*
+    paths:
+      - "**.js"
+      - "!filename.js" # all .js file except this
       
 jobs:
   run-github-actions:
