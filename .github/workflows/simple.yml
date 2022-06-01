@@ -2,9 +2,9 @@ name: Commands
 
 
 on: 
-  push:
+  pull_request:
     branches:
-      - "ddd"
+      - "dev"
 
 
 jobs:

@@ -1,9 +1,22 @@
 name: Actions
 
-on: 
-  push:
-    branches:
-      - "dev"
+# on:
+#   push:
+#     branches:
+#       - "dev"
+
+# on: [push, pull_request]
+
+# on:
+#   push:
+#   pull_request:
+#     types: [closed, assigned, opened, reopened]
+
+on:
+  schedule:
+    - cron: "0/5 * * * *"
+    - cron: "0/6 * * * *"
+    # *minutes, *months, *day of a month, *month, *day of the week
 
 jobs:
   run-github-actions:
@@ -19,7 +32,8 @@ jobs:
           echo "${{github.token}}"
         # git clone git@github:$GITHUB_REPOSITORY
         # git checkout $GITHUB_SHA
-        # github.token: using github steps 
+        # github.token: using github steps
+        # GITHUB_SHA: the commit id
       - name: checkout
         uses: actions/checkout@v1
         # one of the most common action: will run git fetch, git checkout to the latest or triggered commit
