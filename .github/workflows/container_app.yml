@@ -17,8 +17,8 @@ jobs:
     steps:
       - name: Init
         run: |
-          apt-get update
-          apt-get install curl
+          sudo apt-get update
+          sudo apt-get install curl -y
       - name: Post a user
         run: "curl -X POST http://localhost:3001/api/user -H 'Content-Type: application/json' -d '{\"username\":\"hello\", \"address\":\"hellos_address\"}'"
       - name: Get Users
