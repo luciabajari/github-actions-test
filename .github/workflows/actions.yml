@@ -37,7 +37,7 @@ on:
     # branches-ignore:
     #   - "main"
     branches:
-      - "dev"
+      # - "dev"
       - "feature/*" # * not match for /, it has to be "only one word" (feature/apple - good, feature/apple/a - not)
       - "feature/**"
     tags:
