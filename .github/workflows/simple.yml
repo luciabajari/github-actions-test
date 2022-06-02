@@ -8,12 +8,14 @@ on:
 
 
 jobs:
-  my-run-shell-cmd-job:
+  run-shell-command:
     runs-on: ubuntu-latest
+    timeout-minutes: 360 # timeout limit
     steps:
       - name: echo
         run: echo "Hello"
-      - name: check versions
+        continue-on-error: true # if fails, other jobs will run
+      - name: multiline script
         run: |
           npm -v
           node -v
@@ -24,7 +26,7 @@ jobs:
         shell: python # this should run on a python shell and not bash
   run-windows-commands:
     runs-on: windows-latest # default shell: powershell
-    needs: ["my-run-shell-cmd-job"] # depends on the actions that specified into the list 
+    needs: ["run-shell-command"] # depends on the actions that specified into the list 
     steps:
       - name: dir powershell
         run: Get-Location
