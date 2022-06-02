@@ -14,12 +14,11 @@ jobs:
         image: mongo
         ports:
           - "27017:27017"
-    container: 
-      image: node:13.5.0-alpine3.10
-      # ports:
-      # volumes:
-      # options:  --cpus 1 --host
-    steps: # will run inside the container not the VM
+    steps:
+      - name: Init
+        run: |
+          apt-get update
+          apt-get install curl
       - name: Post a user
         run: "curl -X POST http://localhost:3001/api/user -H 'Content-Type: application/json' -d '{\"username\":\"hello\", \"address\":\"hellos_address\"}'"
       - name: Get Users
