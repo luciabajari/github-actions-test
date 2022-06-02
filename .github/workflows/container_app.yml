@@ -13,7 +13,7 @@ jobs:
       - name: Step with docker
         uses: docker://node:12.14.1-alpine3.10 # docker container in the uses key, run this container when step executes
         with: # overwrite docker container entry point (just like in Dockerfile ENTRYPOINT ...)
-          entrypoint: 'bin/echo'
+          entrypoint: '/bin/echo'
           args: 'Hello World'
       - name: Log node version
         uses: docker://node:12.14.1-alpine3.10 # docker container in the uses key, run this container when step executes
