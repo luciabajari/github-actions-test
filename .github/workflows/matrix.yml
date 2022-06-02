@@ -11,7 +11,7 @@ jobs:
         node_version: [6,8,10]
         include: # add extra values to the certain configuration
           - os: ubuntu-latest
-            node_version: 4
+            node_version: 8
             is_ubuntu_8: "true"
         exclude: 
           - os: ubuntu-latest
